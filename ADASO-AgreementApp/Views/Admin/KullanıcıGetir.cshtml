@@ -1,0 +1,47 @@
+﻿@model ADASO_AgreementApp.Models.Entity.Adminn
+@{
+    ViewBag.Title = "KullanıcıGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm("Guncelle","Admin", FormMethod.Post))
+{
+<div class="form-group" style="padding-left:10px;">
+    @Html.LabelFor(m => m.Id)
+    @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.Name, "Ad")
+    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+
+    <br />
+    @Html.LabelFor(m => m.Surname, "Soyad")
+    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.Tel, "Telefon")
+    @Html.TextBoxFor(m => m.Tel, new { @class = "form-control" })
+
+    <br />
+    @Html.LabelFor(m => m.Password, "Şifre")
+    @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+
+    <br/>
+    @Html.LabelFor(m => m.Mail, "Email")
+    @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
+
+    <br />
+    @Html.LabelFor(m => m.TC, "TC")
+    @Html.TextBoxFor(m => m.TC, new { @class = "form-control" })
+
+    <br />
+    @Html.LabelFor(m => m.Role, "Pozisyon")
+    @Html.TextBoxFor(m => m.Role, new { @class = "form-control" })
+</div>
+<div style="padding-left:10px;">
+    <button class="btn btn-success" style="margin-bottom:10px;">GÜNCELLE</button>
+</div>
+}
+
+

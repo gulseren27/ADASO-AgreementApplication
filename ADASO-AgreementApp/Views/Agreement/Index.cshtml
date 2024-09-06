@@ -1,0 +1,224 @@
+﻿@*@using ADASO_AgreementApp.Models.Entity
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Agreementt>*@
+@model ADASO_AgreementApp.Models.ViewModel.Class
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">SÖZLEŞMELER</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Sözleşme ID</th>
+                        <th>Sözleşme Başlığı</th>
+                        <th>Sözleşme İçeriği</th>
+                        <th>Başlangıç Tarihi</th>
+                        <th>Bitiş Tarihi</th>
+                        <th>Şirket</th>
+                        <th>Taraflar</th>
+                        <th>Güncelle</th>
+                        <th>Sözleşme Yenile</th>
+                        <th>Detay</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var i in Model.Agreements)
+                    {
+                       
+
+                        <tr>
+                            <td>@i.AId</td>
+                            <td>@i.Title</td>
+                            <td>@i.Content</td>
+                            <td>@i.StartDate</td>
+                            <td>@i.EndDate</td>
+                            <td>@i.CompanyName</td>
+                            <td>
+                              
+                                <a href="@Url.Action("AddMail", "Agreement", new { AId = i.AId })" class="btn btn-outline-dark">Taraf Ekle</a>
+                            </td>
+
+                            <td><a href="~/Agreement/SozlesmeGetir/@i.AId" class="btn btn-outline-success">Güncelle</a></td>
+                            <td>
+                                <button class="btn btn-outline-warning" type="button" onclick="openRenewModal(@i.AId, '@i.Title', '@i.Content', '@i.StartDate', '@i.EndDate', '@i.CompanyName', '@i.Email')">Yenile</button>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-outline-secondary" type="button" onclick="openDetailedInformationModal(@i.AId, '@i.Title', '@i.Content', '@i.StartDate', '@i.EndDate', '@i.CompanyName', '@i.Email', '@i.File', '@i.Status','@i.ReminderSentFor')">Detay</button>
+                            </td>
+                        </tr>
+                        }
+                  
+                </tbody>
+            </table>
+                   
+         @*   @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))*@
+            <div>
+                <a href="~/Agreement/NewAgrement" class="btn btn-info">Sözleşme Ekle</a>
+            </div>
+             
+            <div class="modal fade" id="renewModal" tabindex="-1" role="dialog" aria-labelledby="renewModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="renewModalLabel">Sözleşme Yenile</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action="~/Agreement/ReNewAgreement">
+                            <div class="modal-body">
+                                <input type="hidden" id="Id" name="Id" />
+                                <div>
+                                    <label>Sözleşme Adı</label>
+                                    <input type="text" id="Title" name="Title" class="form-control" />
+                                </div>
+                                <div>
+                                    <label>Sözleşme İçeriği</label>
+                                    <input type="text" id="Content" name="Content" class="form-control" />
+                                </div>
+                                <div>
+                                    <label>Başlangıç Tarihi</label>
+                                    <input type="date" id="StartDate" name="StartDate" class="form-control" />
+                                </div>
+                                <div>
+                                    <label>Bitiş Tarihi</label>
+                                    <input type="date" id="EndDate" name="EndDate" class="form-control" />
+                                </div>
+                                <div>
+                                    <label>Şirket</label>
+                                    <input type="text" id="CompanyName" name="CompanyName" class="form-control" />
+                                </div>
+                                <div>
+                                    <label>E-Mail</label>
+                                    <input type="email" id="Email" name="Email" class="form-control" />
+                                </div>
+                                <div>
+                                    <input type="file" id="File" name="File" class="btn btn-primary" />
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="margin-top:5px">
+                                <button type="submit" class="btn btn-info">Yenile</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal Et</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="detailedInformationModal" tabindex="-1" role="dialog" aria-labelledby="detailedInformationModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="detailedInformationModalLabel">Sözleşme Bilgileri</h5>
+                        </div>
+                        <form method="get">
+                            <div class="modal-body">
+                                <input type="hidden" id="iId" name="Id" />
+                                <div>
+                                    <label>Sözleşme Adı</label>
+                                    <input type="text" id="iTitle" name="Title" class="form-control" readonly />
+                                </div>
+                                <div>
+                                    <label>Sözleşme İçeriği</label>
+                                    <input type="text" id="iContent" name="Content" class="form-control" readonly />
+                                </div>
+                                <div>
+                                    <label>Başlangıç Tarihi</label>
+                                    <input type="text" id="iStartDate" name="StartDate" class="form-control" readonly />
+                                </div>
+                                <div>
+                                    <label>Bitiş Tarihi</label>
+                                    <input type="text" id="iEndDate" name="EndDate" class="form-control" readonly />
+                                </div>
+                                <div>
+                                    <label>Şirket</label>
+                                    <input type="text" id="iCompanyName" name="CompanyName" class="form-control" readonly />
+                                </div>
+                                <div>
+                                    <label>E-Mail</label>
+                                    <input type="email" id="iEmail" name="Email" class="form-control" readonly />
+                                </div>
+                                <div>
+                                    <label>Belge Adı</label>
+                                    <input type="text" id="iFile" name="File" class="form-control" readonly />
+                                </div>
+                                <div>
+                                    <label>Durum</label>
+                                    <input type="text" id="iStatus" name="Status" class="form-control" readonly />
+                                </div>
+                                <div>
+                                    <label>Hatırlatma Durumu</label>
+                                    <input type="text" id="iReminderSentFor" name="ReminderSentFor" class="form-control" readonly />
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="margin-top:5px">
+                                <a id="viewFileButton" href="#" class="btn btn-warning" target="_blank">Dosya Görüntüle</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openRenewModal(id, title, content, startDate, endDate, companyName, email) {
+                    const today = new Date();
+                    const formattedToday = today.toISOString().split('T')[0];
+                    const nextYear = new Date(today.setFullYear(today.getFullYear() + 1));
+                    const formattedNextYear = nextYear.toISOString().split('T')[0];
+                    document.getElementById('Id').value = id;
+                    document.getElementById('Title').value = title;
+                    document.getElementById('Content').value = content;
+                    document.getElementById('StartDate').value = formattedToday;
+                    document.getElementById('EndDate').value = formattedNextYear;
+                    document.getElementById('CompanyName').value = companyName;
+                    document.getElementById('Email').value = email;
+                    $('#renewModal').modal('show');
+                }
+                function openDetailedInformationModal(id, title, content, startDate, endDate, companyName, email, file,status, reminderSentFor) {
+                     document.getElementById('iId').value = id;
+                     document.getElementById('iTitle').value = title;
+                     document.getElementById('iContent').value = content;
+                     document.getElementById('iStartDate').value = startDate;
+                     document.getElementById('iEndDate').value = endDate;
+                     document.getElementById('iCompanyName').value = companyName;
+                     document.getElementById('iEmail').value = email;
+                     document.getElementById('iFile').value = file;
+                    const today = new Date();
+                    const endDateObject = new Date(endDate);
+
+                    if (endDateObject < today) {
+                        status = 'Pasif';
+                    } else {
+                        status = 'Aktif';
+                    }
+                    document.getElementById('iStatus').value = status;
+
+                    if (reminderSentFor === null || reminderSentFor === '') {
+                        document.getElementById('iReminderSentFor').value = 'Hatırlatma mesajı gönderilmedi.';
+                    } else {
+                        document.getElementById('iReminderSentFor').value = reminderSentFor + '. hatırlatma mesajı gönderildi.';
+                    }
+
+
+
+                                const filePath = '@Url.Content("~/OrnekSozlesmeler/")' + file;
+                                document.getElementById('viewFileButton').href = filePath;
+                                $('#detailedInformationModal').modal('show');
+                            }
+            </script>
+        </div>
+    </div>
+</div>

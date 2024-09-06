@@ -1,0 +1,14 @@
+C:\Users\avnic\source\repos\AgreementReminderService\bin\Debug\AgreementReminderService.exe.config
+C:\Users\avnic\source\repos\AgreementReminderService\bin\Debug\AgreementReminderService.exe
+C:\Users\avnic\source\repos\AgreementReminderService\bin\Debug\AgreementReminderService.pdb
+C:\Users\avnic\source\repos\AgreementReminderService\obj\Debug\AgreementReminderService.csproj.AssemblyReference.cache
+C:\Users\avnic\source\repos\AgreementReminderService\obj\Debug\AgreementReminderService.csproj.CoreCompileInputs.cache
+C:\Users\avnic\source\repos\AgreementReminderService\obj\Debug\AgreementReminderService.exe
+C:\Users\avnic\source\repos\AgreementReminderService\obj\Debug\AgreementReminderService.pdb
+C:\Users\Gulseren\source\repos\AgreementReminderService\AgreementReminderService\bin\Debug\AgreementReminderService.exe.config
+C:\Users\Gulseren\source\repos\AgreementReminderService\AgreementReminderService\bin\Debug\AgreementReminderService.exe
+C:\Users\Gulseren\source\repos\AgreementReminderService\AgreementReminderService\bin\Debug\AgreementReminderService.pdb
+C:\Users\Gulseren\source\repos\AgreementReminderService\AgreementReminderService\obj\Debug\AgreementReminderService.csproj.CoreCompileInputs.cache
+C:\Users\Gulseren\source\repos\AgreementReminderService\AgreementReminderService\obj\Debug\AgreementReminderService.exe
+C:\Users\Gulseren\source\repos\AgreementReminderService\AgreementReminderService\obj\Debug\AgreementReminderService.pdb
+C:\Users\Gulseren\source\repos\AgreementReminderService\AgreementReminderService\obj\Debug\AgreementReminderService.csproj.AssemblyReference.cache

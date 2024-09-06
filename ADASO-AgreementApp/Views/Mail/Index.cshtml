@@ -1,0 +1,58 @@
+﻿@model ADASO_AgreementApp.Models.ViewModel.Class
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">TARAFLAR</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Adı</th>
+                        <th>Soyadı</th>
+                        <th>Mail</th>
+                        <th>Telefon</th>
+                        <th>Sözleşme Adı</th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var i in Model.Maills)
+                    {
+                        //foreach (var s in Model.Agreements)
+                        //{
+
+                        var relatedAgreement = Model.Agreements.FirstOrDefault(a => a.AId == i.AId);
+                        if (relatedAgreement != null)
+                       {
+                            <tr>
+                                <td>@i.MId</td>
+                                <td>@i.Name</td>
+                                <td>@i.Surname</td>
+                                <td>@i.MailAdress</td>
+                                <td>@i.PhoneNumber</td>
+                                <td>@relatedAgreement.Title</td>
+
+
+                            </tr>
+                            }
+
+                        }
+                    
+                </tbody>
+
+            </table>
+           
+            </div>
+       
+</div>
+</div> 

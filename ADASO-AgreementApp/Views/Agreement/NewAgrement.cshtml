@@ -1,0 +1,50 @@
+﻿@model ADASO_AgreementApp.Models.Entity.Agreementt
+@{
+    ViewBag.Title = "NewAgrement";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post" style="margin-left:15px;">
+    <div>
+        <label>Sözleşme Adı</label>
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title, "", new { @style = "color:blue" })
+    </div>
+    <div>
+        <label>Sözleşme İçeriği</label>
+        @Html.TextBoxFor(m => m.Content, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Content, "", new { @style = "color:blue" })
+    </div>
+    <div>
+        <label>Başlangıç Tarihi</label>
+        @Html.TextBoxFor(m => m.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+        @Html.ValidationMessageFor(m => m.StartDate, "", new { @style = "color:blue" })
+    </div>
+    <div>
+        <label>Bitiş Tarihi</label>
+        @Html.TextBoxFor(m => m.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+        @Html.ValidationMessageFor(m => m.EndDate, "", new { @style = "color:blue" })
+    </div>
+    <div>
+        <label>Şirket</label>
+        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CompanyName, "", new { @style = "color:blue" })
+    </div>
+
+    <div>
+        <label>E-Mail</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email, "", new { @style = "color:blue" })
+    </div>
+    <br />
+    <div>
+        <input type="file" name="File" class="btn btn-primary"/>
+    </div>
+
+
+    <div style="margin-top:10px">
+        <button id="btn" class="btn btn-info">Sözleşme Ekle</button>
+    </div>
+
+
+</form>

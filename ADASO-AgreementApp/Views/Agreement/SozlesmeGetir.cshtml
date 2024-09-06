@@ -1,0 +1,63 @@
+﻿@model ADASO_AgreementApp.Models.Entity.Agreementt
+@{
+    ViewBag.Title = "SozlesmeGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Agreement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group" style="padding-left:10px;">
+        @Html.LabelFor(m => m.AId)
+        <br />
+        @Html.TextBoxFor(m => m.AId, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.Title, "Başlık")
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Content, "İçerik")
+        @Html.TextBoxFor(m => m.Content, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(m => m.EndDate, "Bitiş Tarihi")
+        @Html.TextBoxFor(m => m.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type="date" })
+        <br />
+        @Html.LabelFor(m => m.StartDate, "Başlangıç Tarihi")
+        @Html.TextBoxFor(m => m.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+        <br />
+        @Html.LabelFor(m => m.File)
+        <input type="file" id="fileInput" name="File" class="btn btn-info" />
+        <br />
+        <br />
+        @Html.TextBoxFor(m => m.File, new { @class = "form-control", @readonly = "readonly" })
+
+        <br />
+        @Html.LabelFor(m => m.CompanyName, "Şirket Adı")
+        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(m => m.Email, "Email")
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        <br />
+        <div>
+            <button type="submit" class="btn btn-success" style="margin-bottom:10px;">GÜNCELLE</button>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    document.getElementById('fileInput').addEventListener('change', function () {
+        var fileInput = document.getElementById('fileInput');
+        var File = document.getElementById('File');
+
+        
+        if (fileInput.files.length > 0) {
+            File.value = fileInput.files[0].name;
+        } else {
+            File.value = '';
+        }
+    });
+</script>
+
+
+
