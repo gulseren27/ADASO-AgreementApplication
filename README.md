@@ -1,2 +1,3 @@
 # ADASO-AgreementApplication
- Sözleşme Takip Uygulaması
+ Sözleşme Takip Uygulaması'nda admin girişi bulunmkata ve giriş yapıldıktan sonra kullanıcı bilgilerinin, sözleşmelerin ,tarafaların olduğu bir sidebar bulunmakta.Sözleşmeler sayfasında yapılmış olan sözleşmelerin listesi ve bilgileri tutulmakta. Sözleşmelerin her birini güncelleyebilir, sözleşme bitiminden 1 yıl sonrası için yenileyebilirsiniz. Sözleşmeyle ilgili detayları detay butonunda bulabilirsiniz. Sözleşmelerin bitimine kaç gün kaldıysa mail yolu ile (ReminderService) haber veren ve bunu 7,15,30 güne bir takip eden bir sistem var. Bu üç periyot için hatırlatma maili gönderildiyse bunu da detay kısmında bulabilirisiniz. Sözleşme hatırlatma maili default olarak adminin mailine giderken taraf ekle butonuyla hatırlatma maili gitmesini istediğiniz kişileri de ekleyebilirsiniz.
+Mail Service içim SMTP veritabanı için MSSQL kullanılmıştır.
